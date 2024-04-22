@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         sma10.setOnClickListener(view -> {
             if (sma10.isChecked()) {
                 chart = findViewById(R.id.chart);
-                ArrayList<Double> sma10Values = getCurrencyValues("USD", startDate, endDate);
+                ArrayList<Double> sma10Values = Statistics.movingAverage(currencyValues, 10);
                 List<Entry> entries = new ArrayList<Entry>();
                 for (int i = 0; i < sma10Values.size(); i++) {
-                    entries.add(new Entry(i, sma10Values.get(i).floatValue()));
+                    entries.add(new Entry(i + 10, sma10Values.get(i).floatValue()));
                 }
                 sma10LineData = new LineDataSet(entries, "SMA10");
                 sma10LineData.setDrawCircles(false);
@@ -101,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
         sma30.setOnClickListener(view  -> {
             if (sma30.isChecked()) {
                 chart = findViewById(R.id.chart);
-                ArrayList<Double> sma30Values = getCurrencyValues("GBP", startDate, endDate);
+                ArrayList<Double> sma30Values = Statistics.movingAverage(currencyValues, 30);
                 List<Entry> entries = new ArrayList<Entry>();
                 for (int i = 0; i < sma30Values.size(); i++) {
-                    entries.add(new Entry(i, sma30Values.get(i).floatValue()));
+                    entries.add(new Entry(i + 30, sma30Values.get(i).floatValue()));
                 }
                 sma30LineData = new LineDataSet(entries, "SMA30");
                 sma30LineData.setDrawCircles(false);
